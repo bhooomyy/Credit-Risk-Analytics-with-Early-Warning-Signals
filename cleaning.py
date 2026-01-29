@@ -34,7 +34,7 @@ chunk=[]
 for df in pd.read_csv(LOAN_FILE_PATH,usecols=use_col,chunksize=200_000,low_memory=False):
     for dcol in ["issue_d", "earliest_cr_line", "last_pymnt_d", "last_credit_pull_d"]:
         if dcol in df.columns:
-            df[dcol]=pd.to_datetime(df[dcol],format="%b-%Y",errors="coerce")
+            df[dcol]=pd.to_datetime(df[dcol],errors="coerce")
     if "term" in df.columns:
         df["term"]=pd.to_numeric(df["term"].str.strip().str.split(" ").str[0])
     if "int_rate" in df.columns:
@@ -50,6 +50,3 @@ for df in pd.read_csv(LOAN_FILE_PATH,usecols=use_col,chunksize=200_000,low_memor
 df_core=pd.concat(chunk,ignore_index=True)
 df_core.to_csv(OUT_PATH,index=False)
 
-print("rows: ",len(df_core))
-print("columns: ",df_core.shape[1])
-print("missing columns: ",[c for c in KEEP_COLs if c not in use_col])
