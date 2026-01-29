@@ -40,3 +40,11 @@ CREATE TABLE loan_core (
     total_rev_hi_lim DECIMAL(16,2),
     tot_hi_cred_lim DECIMAL(16,2)
 );
+
+
+LOAD DATA LOCAL INFILE '/Users/bhoomi/Documents/GitHub/Credit-Risk-Analytics-with-Early-Warning-Signals/loan_core.csv'
+INTO TABLE loan_core
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
