@@ -27,13 +27,14 @@ This project answers:
 
 ## 🏗 Architecture Overview
 Raw CSV (loan.csv)
-↓
-Python (Chunked Processing & Standardization)
-↓
+   ↓
+Python – Chunked Processing & Standardization
+   ↓
 loan_core (Processed Core Dataset)
-↓
-loan_core_risk (Risk Labeling)
-↓
+   ↓
+loan_core_risk (Canonical Risk Labeling)
+   ↓
 loan_core_ews (Early Warning Signals)
-↓
+   ↓
 loan_core_bucketed (Portfolio Risk Buckets)
+
