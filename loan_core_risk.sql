@@ -37,3 +37,19 @@ select lc.*,
     end as risk_state,
 issue_d as issue_month
 from loan_core lc;
+
+select risk_state, count(*)
+from loan_core_risk
+group by risk_state
+order by count(*) desc;
+
+select default_flag, count(*)
+from loan_core_risk
+group by default_flag;
+
+select loan_status, risk_state, count(*)
+from loan_core_risk
+group by loan_status, risk_state
+order by COUNT(*) desc;
+
+-- Does not meet the credit policy. Status:Charged Of → OTHER (761)
