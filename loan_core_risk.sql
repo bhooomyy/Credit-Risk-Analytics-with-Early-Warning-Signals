@@ -1,3 +1,4 @@
+-- Risk labeling logic
 select distinct loan_status from loan_core;
 
 create table loan_core_risk as 
@@ -59,7 +60,7 @@ set
     risk_state = 'DEFAULT'
 where loan_status like 'Does not meet the credit policy. Status:Charged%';
 
-
+-- meet credit policy. classify well into associate categories.
 select risk_state, count(*)
 from loan_core_risk
 group by risk_state
