@@ -67,18 +67,7 @@ A loan is flagged as defaulted if:
 - `Default`
 - `Does not meet the credit policy. Status:Charged Off`
 
-```sql
-default_flag = 1
-
 ### Risk State Classification
-
-| Loan Status Category            | Risk State |
-|---------------------------------|------------|
-| Charged Off / Default           | DEFAULT    |
-| Late / Grace Period             | LATE       |
-| Fully Paid                      | PAID       |
-| Current                         | CURRENT    |
-
 ![Risk Label](risk_label.png)
 
 ---
@@ -87,18 +76,7 @@ default_flag = 1
 Early-warning signals are engineered using **credit risk best practices** to detect signs of borrower financial stress **before delinquency occurs**.
 
 ### Signals Implemented
-
-| Signal                          | Definition                                |
-|---------------------------------|-------------------------------------------|
-| **High Credit Utilization**     | `revol_util ≥ 80%`                        |
-| **Low Available Credit Buffer** | `(total_rev_hi_lim − revol_bal) < $5,000` |
-| **High Borrower Leverage**      | `loan_amnt / annual_inc > 40%`            |
-
-### Composite Early Warning Flag
-
-```text
-early_warning_flag = 1
-if ANY individual signal is triggered
+## Composite Early Warning Flag
 ![Early Warning Signals](early_warning.png)
 
 ---
@@ -107,13 +85,6 @@ if ANY individual signal is triggered
 
 Loans are segmented into **actionable portfolio risk buckets** to support **risk monitoring, prioritization, and intervention strategies**.  
 This bucketing framework enables efficient portfolio oversight and targeted risk management.
-
-| Risk Bucket | Definition                        |
-|-------------|-----------------------------------|
-| **DEFAULT** | Loan has defaulted                |
-| **HIGH**    | Loan is currently late            |
-| **MEDIUM**  | Early-warning signals are present |
-| **LOW**     | No early-warning signals detected |
 
 ![Risk Bucket](risk_bucket.png)
 This structured classification supports **portfolio-level risk assessment**, **exposure concentration analysis**, and **early-stage intervention planning**.
