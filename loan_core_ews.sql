@@ -39,3 +39,16 @@ create table loan_core_ews as
         else 0
         end as early_warning_flag
     from loan_core_risk lcr;
+
+select
+    sum(high_util_flag) as high_util,
+    sum(low_buffer_flag) as low_buffer,
+    sum(high_leverage_flag) as high_leverage,
+    sum(early_warning_flag) as early_warning
+from loan_core_ews;
+
+select 
+    early_warning_flag,default_flag, count(*) as cnt 
+from loan_core_ews 
+group by early_warning_flag,default_flag 
+order by early_warning_flag desc, default_flag desc;
