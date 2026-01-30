@@ -13,3 +13,4 @@ create table loan_core_bucketed as
     from loan_core_ews lce;
 
 
+select risk_bucket, count(*) from loan_core_bucketed group by risk_bucket order by count(*) desc;
