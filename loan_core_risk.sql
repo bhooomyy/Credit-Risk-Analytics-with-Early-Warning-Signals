@@ -50,6 +50,17 @@ group by default_flag;
 select loan_status, risk_state, count(*)
 from loan_core_risk
 group by loan_status, risk_state
-order by COUNT(*) desc;
+order by count(*) desc;
 
 -- Does not meet the credit policy. Status:Charged Of → OTHER (761)
+update loan_core_risk
+set
+    default_flag = 1,
+    risk_state = 'DEFAULT'
+where loan_status like 'Does not meet the credit policy. Status:Charged%';
+
+
+select risk_state, count(*)
+from loan_core_risk
+group by risk_state
+order by count(*) desc;
